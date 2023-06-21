@@ -1,9 +1,20 @@
+import { useEffect } from 'react';
 import { Button } from '../../components/Button/Button';
 import { QuizzItem } from '../../components/QuizzItem/QuizzItem';
 import constants from '../../constants/common.json';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
+import { fetchQuizzes } from '../../store/quizzActionCreator';
 import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
+  const dispatch = useAppDispatch();
+  const { quizzes, isLoaded, error } = useAppSelector(
+    (state) => state.quizzReducer
+  );
+  useEffect(() => {
+    dispatch(fetchQuizzes());
+    console.log(quizzes);
+  }, []);
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -16,6 +27,7 @@ export const HomePage = () => {
       </header>
       <div className={styles.quizzes}>
         <QuizzItem name={'Simple quizz'} questions={9}></QuizzItem>
+        {quizzes && <p>{quizzes[1].question}</p>}
       </div>
     </div>
   );
