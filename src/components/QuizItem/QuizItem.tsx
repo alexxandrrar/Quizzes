@@ -1,15 +1,18 @@
 import { FC } from 'react';
-import styles from './QuizzItem.module.scss';
 import { Button } from '../Button/Button';
 
-interface IQuizzItemProps {
+import styles from './QuizItem.module.scss';
+
+export interface IQuizItemProps {
   name: string;
-  questions: number;
+  questions?: number;
+  category?: string;
 }
 
-export const QuizzItem: FC<IQuizzItemProps> = ({
+export const QuizItem: FC<IQuizItemProps> = ({
   name,
   questions,
+  category,
 }): JSX.Element => {
   return (
     <div className={styles.container}>

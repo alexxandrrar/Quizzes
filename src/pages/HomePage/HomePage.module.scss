@@ -7,12 +7,14 @@
     align-items: center;
     .logo {
       margin-right: 30%;
+      font-family: cursive;
+      letter-spacing: 2px;
       font-size: $fontSizeLg;
       color: #f5a54a;
       background-image: linear-gradient(
-        135deg,
-        rgba(245, 165, 74, 1) 48%,
-        rgba(246, 143, 172, 1) 52%
+        to right,
+        $mainYellow 30%,
+        $mainPink 90%
       );
       background-clip: text;
       -webkit-background-clip: text;
@@ -22,5 +24,12 @@
     .buttonContainer {
       margin-right: 5%;
     }
+  }
+
+  .quizzes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
 }

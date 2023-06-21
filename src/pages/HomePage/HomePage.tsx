@@ -1,34 +1,59 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
-import { QuizzItem } from '../../components/QuizzItem/QuizzItem';
-import constants from '../../constants/common.json';
+import { QuizItem } from '../../components/QuizItem/QuizItem';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
 import { fetchQuizzes } from '../../store/quizzActionCreator';
+import { getRandomQuizzes } from '../../utils/getRandomQuizzes';
+import { Loader } from '../../components/Loader/Loader';
+import { getQuizByCategory } from '../../utils/getQuizByCategory';
+import constants from '../../constants/common.json';
+
 import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { quizzes, isLoaded, error } = useAppSelector(
     (state) => state.quizzReducer
   );
+
   useEffect(() => {
     dispatch(fetchQuizzes());
-    console.log(quizzes);
-  }, []);
+  }, [dispatch]);
+
+  const handleRandomButtonClick = () => {
+    getRandomQuizzes(quizzes);
+    navigate('/play');
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.logo}>{constants.QUIZZES}</h1>
         <div className={styles.buttonContainer}>
-          <Button type='gradient' onClick={() => console.log('RANDOM QUIZZ')}>
+          <Button type='gradient' onClick={handleRandomButtonClick}>
             I'm lucky
           </Button>
         </div>
       </header>
-      <div className={styles.quizzes}>
-        <QuizzItem name={'Simple quizz'} questions={9}></QuizzItem>
-        {quizzes && <p>{quizzes[1].question}</p>}
-      </div>
+      {isLoaded ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={styles.quizzes}>
+          {quizzes &&
+            quizzes.map(({ category }) => (
+              <QuizItem
+                name={category}
+                questions={getQuizByCategory(quizzes, category).length}
+                category={category}
+              ></QuizItem>
+            ))}
+        </div>
+      )}
+      {error && <h1>{error}</h1>}
     </div>
   );
 };
