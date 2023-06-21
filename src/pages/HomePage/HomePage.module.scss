@@ -1,0 +1,26 @@
+@import '../../styles/variables.module.scss';
+
+.container {
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .logo {
+      margin-right: 30%;
+      font-size: $fontSizeLg;
+      color: #f5a54a;
+      background-image: linear-gradient(
+        135deg,
+        rgba(245, 165, 74, 1) 48%,
+        rgba(246, 143, 172, 1) 52%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .buttonContainer {
+      margin-right: 5%;
+    }
+  }
+}

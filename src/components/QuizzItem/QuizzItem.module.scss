@@ -1,0 +1,17 @@
+@import '../../styles/variables.module.scss';
+
+.container {
+  height: 350px;
+  width: 250px;
+  border: 2px solid $mainYellow;
+  border-radius: 20px;
+
+  & img {
+    width: 200px;
+    margin-top: 20px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

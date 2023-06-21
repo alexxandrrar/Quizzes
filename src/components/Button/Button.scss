@@ -1,0 +1,42 @@
+@import '../../styles/variables.module.scss';
+
+.button {
+  border-radius: 20px;
+  border: 3px solid;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+
+  @mixin button_type($color, $border-color, $bg-color, $padding, $font-size) {
+    background-image: $bg-color;
+    background-color: $bg-color;
+    border-color: $border-color;
+    color: $color;
+    padding: $padding;
+    font-size: $font-size;
+  }
+
+  &.button_type.gradient {
+    @include button_type(
+      $mainWhite,
+      $mainWhite,
+      linear-gradient(to right, $mainYellow 30%, $mainPink 90%),
+      8px 20px,
+      $fontSizeMd
+    );
+  }
+
+  &.button_type.simple {
+    @include button_type(
+      $mainYellow,
+      $mainYellow,
+      transparent,
+      8px 20px,
+      $fontSizeSm
+    );
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    border: 3.5px solid $mainWhite;
+  }
+}
