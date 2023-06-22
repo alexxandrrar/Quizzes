@@ -19,7 +19,7 @@
     @include button_type(
       $mainWhite,
       $mainWhite,
-      linear-gradient(to right, $mainYellow 30%, $mainPink 90%),
+      $mainGradient,
       8px 20px,
       $fontSizeMd
     );
@@ -33,6 +33,9 @@
       8px 20px,
       $fontSizeSm
     );
+  }
+  &.button_type.exit {
+    @include button_type($mainRed, $mainRed, transparent, 8px, $fontSizeSm);
   }
 
   &:hover {

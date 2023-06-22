@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/reduxHook';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button/Button';
-import { QuizItem } from '../../components/QuizItem/QuizItem';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
-import { fetchQuizzes } from '../../store/quizzActionCreator';
-import { getRandomQuizzes } from '../../utils/getRandomQuizzes';
 import { Loader } from '../../components/Loader/Loader';
+import { QuizItem } from '../../components/QuizItem/QuizItem';
+import { getRandomQuiz } from '../../utils/getRandomQuiz';
 import { getQuizByCategory } from '../../utils/getQuizByCategory';
 import constants from '../../constants/common.json';
 
@@ -13,19 +12,24 @@ import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const [categories, setCategories] = useState<string[]>([]);
   const { quizzes, isLoaded, error } = useAppSelector(
     (state) => state.quizzReducer
   );
 
-  useEffect(() => {
-    dispatch(fetchQuizzes());
-  }, [dispatch]);
-
   const handleRandomButtonClick = () => {
-    getRandomQuizzes(quizzes);
-    navigate('/play');
+    const category = getRandomQuiz(quizzes);
+    navigate(`/play?quizzes=${encodeURIComponent(JSON.stringify(category))}`);
   };
+
+  useEffect(() => {
+    if (quizzes) {
+      const uniqueCategories = Array.from(
+        new Set(quizzes.map((quiz) => quiz.category))
+      );
+      setCategories(uniqueCategories);
+    }
+  }, [quizzes]);
 
   return (
     <div className={styles.container}>
@@ -43,14 +47,21 @@ export const HomePage = () => {
         </div>
       ) : (
         <div className={styles.quizzes}>
-          {quizzes &&
-            quizzes.map(({ category }) => (
-              <QuizItem
-                name={category}
-                questions={getQuizByCategory(quizzes, category).length}
-                category={category}
-              ></QuizItem>
-            ))}
+          {categories.slice(0, 10).map((category) => (
+            <QuizItem
+              key={category}
+              name={category}
+              questions={getQuizByCategory(quizzes, category).length}
+              category={category}
+              onClick={() =>
+                navigate(
+                  `/play?quizzes=${encodeURIComponent(
+                    JSON.stringify(category)
+                  )}`
+                )
+              }
+            />
+          ))}
         </div>
       )}
       {error && <h1>{error}</h1>}
