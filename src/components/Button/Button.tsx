@@ -8,6 +8,7 @@ interface IButtonProps {
   type?: TButtonType;
   className?: string;
   children?: ReactNode;
+  disabled?: boolean;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -15,9 +16,11 @@ export const Button: FC<IButtonProps> = ({
   children,
   className,
   type,
+  disabled,
 }): JSX.Element => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={classNames(className, 'button', {
         [`button_type ${type}`]: type,

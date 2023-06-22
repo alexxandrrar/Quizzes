@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { IQuizz } from '../../store/quizzSlice';
 
 import styles from './QuestionItem.module.scss';
@@ -7,12 +7,14 @@ interface IQuestionItem {
   quiz: IQuizz;
   selectedAnswer: string;
   setSelectedAnswer: (value: string) => void;
+  setDisabledButton: (value: boolean) => void;
 }
 
 export const QuestionItem: FC<IQuestionItem> = ({
   quiz,
   selectedAnswer,
   setSelectedAnswer,
+  setDisabledButton,
 }): JSX.Element => {
   const getAllAnswers = (quiz: IQuizz) => {
     const newAnswers = [...quiz.incorrect_answers, quiz.correct_answer];
@@ -22,6 +24,7 @@ export const QuestionItem: FC<IQuestionItem> = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSelectedAnswer(event.target.value);
+    setDisabledButton(false);
   };
 
   return (
@@ -30,14 +33,20 @@ export const QuestionItem: FC<IQuestionItem> = ({
         <p>{quiz.question}</p>
         {getAllAnswers(quiz).map((answer) => (
           <div className={styles.questions} key={answer}>
-            <input
-              type='radio'
-              name={`question_${quiz.category}`}
-              value={answer}
-              checked={selectedAnswer === answer}
-              onChange={handleAnswerSelection}
-            />
-            <label>{answer}</label>
+            <div className={styles.checkboxWrapper}>
+              <label className={styles.label} htmlFor={answer}>
+                <input
+                  id={answer}
+                  type='checkbox'
+                  name={`question_${quiz.category}`}
+                  value={answer}
+                  checked={selectedAnswer === answer}
+                  onChange={handleAnswerSelection}
+                ></input>
+                <span className={styles.checkmark}>✓</span>
+                {answer}
+              </label>
+            </div>
           </div>
         ))}
       </div>

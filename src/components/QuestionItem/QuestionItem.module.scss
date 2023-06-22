@@ -12,8 +12,35 @@
     padding: 10px 40px;
     .questions {
       display: flex;
-      flex-direction: row;
-      align-self: center;
+
+      .label {
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        .checkmark {
+          color: black;
+          position: absolute;
+          left: 9px;
+        }
+      }
+
+      .checkboxWrapper input[type='checkbox'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 2px;
+        margin-right: 10px;
+        border: 2px solid $mainYellow;
+        outline: none;
+        cursor: pointer;
+
+        &:checked {
+          background-color: $mainYellow;
+        }
+      }
     }
   }
 }
