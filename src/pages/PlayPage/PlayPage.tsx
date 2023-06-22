@@ -7,6 +7,7 @@ import { Button } from '../../components/Button/Button';
 import constants from '../../constants/common.json';
 
 import styles from './PlayPage.module.scss';
+import { QuizCarousel } from '../../components/QuizCarousel/QuizCarousel';
 
 export const PlayPage = () => {
   const navigate = useNavigate();
@@ -25,11 +26,6 @@ export const PlayPage = () => {
     filteredQuizzes.length === 0 && navigate('/');
   });
 
-  const getAllAnswers = (quiz: IQuizz) => {
-    const newAnswers = [...quiz.incorrect_answers, quiz.correct_answer];
-    return newAnswers;
-  };
-
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -40,16 +36,9 @@ export const PlayPage = () => {
         </div>
         <h1 className={styles.logo}>{constants.PLAY}</h1>
       </header>
-      {filteredQuizzes.map((quiz) => (
-        <div key={quiz.question}>
-          <p>{quiz.question}</p>
-          <ul>
-            {getAllAnswers(quiz).map((answer) => (
-              <li key={answer}>{answer}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div>
+        <QuizCarousel quizzes={filteredQuizzes}></QuizCarousel>
+      </div>
     </div>
   );
 };

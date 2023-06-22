@@ -1,0 +1,19 @@
+@import '../../styles/variables.module.scss';
+
+.container {
+  text-align: center;
+  background-color: transparent;
+  border: solid 2px $extraYellow;
+  border-radius: 20px;
+  width: 50vw;
+  height: 25vh;
+
+  .inner {
+    padding: 10px 40px;
+    .questions {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+    }
+  }
+}
