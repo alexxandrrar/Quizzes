@@ -10,21 +10,29 @@ export const FinishPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const encodedResults = queryParams.get('results');
+  const encodedTime = queryParams.get('elapsed');
   const results = encodedResults
     ? JSON.parse(decodeURIComponent(encodedResults))
     : [];
+  const time = encodedTime ? JSON.parse(decodeURIComponent(encodedTime)) : [];
   return (
     <div className={styles.container}>
       <h1>{constants.RESULTS}</h1>
-      <h2>{constants.SMILE}</h2>
-      {results && (
-        <div className={styles.chartContainer}>
-          <ResultsChart
-            correctAnswers={results.correctCount}
-            incorrectAnswers={results.incorrectCount}
-          />
-        </div>
-      )}
+      <div className={styles.results}>
+        {results && (
+          <div>
+            <ResultsChart
+              correctAnswers={results.correctCount}
+              incorrectAnswers={results.incorrectCount}
+            />
+          </div>
+        )}
+        {time && (
+          <div className={styles.time}>{`It took you ${Math.floor(
+            time / 1000
+          )} seconds to complete this quiz 👏`}</div>
+        )}
+      </div>
       <Button
         className={styles.btn}
         type='simple'

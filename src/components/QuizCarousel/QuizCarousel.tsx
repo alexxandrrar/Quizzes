@@ -13,8 +13,12 @@ import { checkAnswers } from '../../utils/checkAnswers';
 
 interface IQuizCarousel {
   quizzes: IQuizz[];
+  startTime: number;
 }
-export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
+export const QuizCarousel: FC<IQuizCarousel> = ({
+  quizzes,
+  startTime,
+}): JSX.Element => {
   const navigate = useNavigate();
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
@@ -26,8 +30,11 @@ export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
     if (selectedAnswersArray.length === quizzes.length) {
       const correctAnswers = quizzes.map((quiz) => quiz.correct_answer);
       const results = checkAnswers(correctAnswers, selectedAnswersArray);
+      const elapsedTime = Date.now() - startTime;
       navigate(
-        `/finish?results=${encodeURIComponent(JSON.stringify(results))}`
+        `/finish?results=${encodeURIComponent(
+          JSON.stringify(results)
+        )}&elapsed=${elapsedTime}`
       );
     }
   });
