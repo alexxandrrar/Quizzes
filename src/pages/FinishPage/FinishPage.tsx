@@ -1,4 +1,8 @@
 import { useLocation } from 'react-router-dom';
+import { ResultsChart } from '../../components/ResultsChart/ResultsChart';
+import constants from '../../constants/common.json';
+
+import styles from './FinishPage.module.scss';
 
 export const FinishPage = () => {
   const location = useLocation();
@@ -8,11 +12,15 @@ export const FinishPage = () => {
     ? JSON.parse(decodeURIComponent(encodedResults))
     : [];
   return (
-    <div>
+    <div className={styles.container}>
+      <h1>{constants.RESULTS}</h1>
+      <h2>{constants.SMILE}</h2>
       {results && (
-        <div>
-          <p>Correct Answers: {results.correctCount}</p>
-          <p>Incorrect Answers: {results.incorrectCount}</p>
+        <div className={styles.chartContainer}>
+          <ResultsChart
+            correctAnswers={results.correctCount}
+            incorrectAnswers={results.incorrectCount}
+          />
         </div>
       )}
     </div>

@@ -1,1 +1,6 @@
-{ "QUIZZES": "Quizzes", "PLAY": "Play" }
+{
+  "QUIZZES": "Quizzes",
+  "PLAY": "Play",
+  "RESULTS": "Your results",
+  "SMILE": "😊"
+}
