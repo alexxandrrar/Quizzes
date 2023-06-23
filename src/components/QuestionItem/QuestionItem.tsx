@@ -30,9 +30,9 @@ export const QuestionItem: FC<IQuestionItem> = ({
   return (
     <div className={styles.container} key={quiz.category}>
       <div className={styles.inner}>
-        <p>{quiz.question}</p>
-        {getAllAnswers(quiz).map((answer) => (
-          <div className={styles.questions} key={answer}>
+        <p className={styles.question}>{quiz.question}</p>
+        <div className={styles.questions}>
+          {getAllAnswers(quiz).map((answer) => (
             <div className={styles.checkboxWrapper}>
               <label className={styles.label} htmlFor={answer}>
                 <input
@@ -47,8 +47,8 @@ export const QuestionItem: FC<IQuestionItem> = ({
                 {answer}
               </label>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

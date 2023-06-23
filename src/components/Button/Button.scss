@@ -35,7 +35,7 @@
     );
   }
   &.button_type.exit {
-    @include button_type($mainRed, $mainRed, transparent, 8px, $fontSizeSm);
+    @include button_type($mainRed, $mainRed, transparent, 12px, $fontSizeSm);
   }
 
   &:hover {

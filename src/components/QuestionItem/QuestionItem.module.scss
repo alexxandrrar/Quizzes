@@ -2,25 +2,30 @@
 
 .container {
   text-align: center;
-  background-color: transparent;
-  border: solid 2px $extraYellow;
-  border-radius: 20px;
-  width: 50vw;
-  height: 25vh;
+  background-color: $extraDark;
+  border: $extraPink solid 3px;
+  border-radius: 30px;
+  height: 300px;
 
   .inner {
     padding: 10px 40px;
-    .questions {
-      display: flex;
 
+    .question {
+      font-size: $fontSizeMd;
+      margin-bottom: 30px;
+    }
+    .questions {
+      margin-bottom: 20px;
       .label {
         display: flex;
         align-items: center;
         position: relative;
         cursor: pointer;
+        font-size: 20px;
+        margin-bottom: 5px;
 
         .checkmark {
-          color: black;
+          color: $extraDark;
           position: absolute;
           left: 9px;
         }

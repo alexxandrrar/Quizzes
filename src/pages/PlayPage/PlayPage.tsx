@@ -28,17 +28,15 @@ export const PlayPage = () => {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.buttonContainer}>
-          <Button onClick={() => navigate('/')} type='exit'>
-            ❌
-          </Button>
-        </div>
-        <h1 className={styles.logo}>{constants.PLAY}</h1>
-      </header>
+      <h1 className={styles.logo}>{constants.PLAY}</h1>
       <div>
         <QuizCarousel quizzes={filteredQuizzes}></QuizCarousel>
       </div>
+      <footer>
+        <Button onClick={() => navigate('/')} type='exit'>
+          ❌
+        </Button>
+      </footer>
     </div>
   );
 };

@@ -37,14 +37,17 @@ export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
   return (
     <div className={'carousel-container'}>
       <Slider ref={slider} {...settings}>
-        {quizzes.map((quiz) => (
-          <QuestionItem
-            key={quiz.category}
-            selectedAnswer={selectedAnswer}
-            setSelectedAnswer={setSelectedAnswer}
-            setDisabledButton={setDisabledButton}
-            quiz={quiz}
-          />
+        {quizzes.map((quiz, index) => (
+          <div key={index}>
+            <h3>{`${index + 1}/${quizzes.length}`}</h3>
+            <QuestionItem
+              key={quiz.category}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
+              setDisabledButton={setDisabledButton}
+              quiz={quiz}
+            />
+          </div>
         ))}
       </Slider>
       <Button
