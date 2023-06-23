@@ -8,17 +8,32 @@ import 'slick-carousel/slick/slick-theme.css';
 import './QuizCarousel.scss';
 import { Button } from '../Button/Button';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { checkAnswers } from '../../utils/checkAnswers';
 
 interface IQuizCarousel {
   quizzes: IQuizz[];
 }
 export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
+  const navigate = useNavigate();
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
+  const [selectedAnswersArray, setSelectedAnswerArray] = useState<string[]>([]);
 
   const slider = React.useRef(null);
 
+  useEffect(() => {
+    if (selectedAnswersArray.length === quizzes.length) {
+      const correctAnswers = quizzes.map((quiz) => quiz.correct_answer);
+      const results = checkAnswers(correctAnswers, selectedAnswersArray);
+      navigate(
+        `/finish?results=${encodeURIComponent(JSON.stringify(results))}`
+      );
+    }
+  });
+
   const onClickButtonHandler = () => {
+    setSelectedAnswerArray([...selectedAnswersArray, selectedAnswer]);
     /* @ts-ignore */
     slider?.current?.slickNext();
     setSelectedAnswer('');
@@ -41,7 +56,6 @@ export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
           <div key={index}>
             <h3>{`${index + 1}/${quizzes.length}`}</h3>
             <QuestionItem
-              key={quiz.category}
               selectedAnswer={selectedAnswer}
               setSelectedAnswer={setSelectedAnswer}
               setDisabledButton={setDisabledButton}
@@ -56,7 +70,7 @@ export const QuizCarousel: FC<IQuizCarousel> = ({ quizzes }): JSX.Element => {
         type='gradient'
         onClick={onClickButtonHandler}
       >
-        🢂
+        {selectedAnswersArray.length !== quizzes.length - 1 ? '🢂' : 'Finish'}
       </Button>
     </div>
   );

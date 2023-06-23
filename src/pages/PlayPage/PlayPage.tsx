@@ -1,13 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { IQuizz } from '../../store/quizzSlice';
 import { useAppSelector } from '../../hooks/reduxHook';
 import { getQuizByCategory } from '../../utils/getQuizByCategory';
 import { useEffect } from 'react';
 import { Button } from '../../components/Button/Button';
+import { QuizCarousel } from '../../components/QuizCarousel/QuizCarousel';
 import constants from '../../constants/common.json';
 
 import styles from './PlayPage.module.scss';
-import { QuizCarousel } from '../../components/QuizCarousel/QuizCarousel';
 
 export const PlayPage = () => {
   const navigate = useNavigate();

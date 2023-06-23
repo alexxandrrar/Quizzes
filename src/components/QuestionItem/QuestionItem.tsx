@@ -16,10 +16,6 @@ export const QuestionItem: FC<IQuestionItem> = ({
   setSelectedAnswer,
   setDisabledButton,
 }): JSX.Element => {
-  const getAllAnswers = (quiz: IQuizz) => {
-    const newAnswers = [...quiz.incorrect_answers, quiz.correct_answer];
-    return newAnswers;
-  };
   const handleAnswerSelection = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -27,13 +23,18 @@ export const QuestionItem: FC<IQuestionItem> = ({
     setDisabledButton(false);
   };
 
+  const shuffledAnswers = [
+    ...quiz.incorrect_answers,
+    quiz.correct_answer,
+  ].sort();
+
   return (
     <div className={styles.container} key={quiz.category}>
       <div className={styles.inner}>
         <p className={styles.question}>{quiz.question}</p>
         <div className={styles.questions}>
-          {getAllAnswers(quiz).map((answer) => (
-            <div className={styles.checkboxWrapper}>
+          {shuffledAnswers.map((answer, index) => (
+            <div key={index} className={styles.checkboxWrapper}>
               <label className={styles.label} htmlFor={answer}>
                 <input
                   id={answer}
