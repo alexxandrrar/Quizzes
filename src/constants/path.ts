@@ -1,3 +1,4 @@
+import { FinishPage } from '../pages/FinishPage/FinishPage';
 import { HomePage } from '../pages/HomePage/HomePage';
 import { PlayPage } from '../pages/PlayPage/PlayPage';
 import React from 'react';
@@ -5,6 +6,7 @@ import React from 'react';
 export enum EPath {
   HOME_PAGE = '/',
   PLAY_PAGE = '/play',
+  FINISH_PAGE = '/finish',
 }
 
 type TPath = {
@@ -20,5 +22,9 @@ export const routes: TPath[] = [
   {
     path: EPath.PLAY_PAGE,
     element: PlayPage,
+  },
+  {
+    path: EPath.FINISH_PAGE,
+    element: FinishPage,
   },
 ];
