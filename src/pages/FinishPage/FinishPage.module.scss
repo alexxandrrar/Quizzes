@@ -25,12 +25,23 @@
     .time {
       font-size: $fontSizeMd;
       letter-spacing: 2px;
-      width: 250px;
+      width: 15.625rem;
       margin-left: 10vw;
     }
   }
 
   .btn {
     margin-top: 20vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    .results {
+      .time {
+        width: 8rem;
+        margin: 0;
+      }
+    }
   }
 }
