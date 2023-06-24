@@ -3,7 +3,7 @@
 .button {
   border-radius: 20px;
   border: 3px solid;
-  transition: transform 80ms ease-in;
+  transition: transform 90ms ease-in-out;
   cursor: pointer;
 
   @mixin button_type($color, $border-color, $bg-color, $padding, $font-size) {
@@ -23,6 +23,16 @@
       8px 20px,
       $fontSizeMd
     );
+
+    @media (max-width: 400px) {
+      @include button_type(
+        $mainWhite,
+        $mainWhite,
+        $mainGradient,
+        6px 12px,
+        $fontSizeSm
+      );
+    }
   }
 
   &.button_type.simple {
@@ -39,7 +49,6 @@
   }
 
   &:hover {
-    transform: scale(1.05);
-    border: 3.5px solid $mainWhite;
+    transform: scale(1.1);
   }
 }

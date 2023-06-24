@@ -1,17 +1,42 @@
 @import '../../styles/variables.module.scss';
 
 .container {
-  height: 350px;
-  width: 250px;
-  border: 2px solid $mainYellow;
-  border-radius: 20px;
+  height: 21rem;
+  width: 15.625rem;
+  border: 0.125rem solid $mainYellow;
+  transition: transform 80ms ease-in;
+  border-radius: 1.25rem;
 
   & img {
-    width: 200px;
-    margin-top: 20px;
+    width: 12.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .name {
+    font-size: $fontSizeMd;
+    height: 4rem;
+    overflow: hidden;
+    margin: 1rem 0 0;
+    padding: 0 0.2rem;
+  }
+
+  .text {
+    margin: 0 0 0.9rem;
   }
 
   &:hover {
     transform: scale(1.05);
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    height: 18rem;
+    width: 13rem;
+
+    & img {
+      width: 10rem;
+      margin-top: 1.25rem;
+    }
   }
 }
