@@ -11,10 +11,8 @@
     letter-spacing: 2px;
     font-size: $fontSizeLg;
     color: #f5a54a;
-    background-image: $mainGradient;
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   & footer {

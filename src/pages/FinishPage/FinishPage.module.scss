@@ -30,7 +30,6 @@
       margin-left: 10vw;
     }
   }
-
   .btn {
     margin-top: 20vh;
   }
@@ -43,6 +42,25 @@
         width: 8rem;
         margin: 0;
       }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    & h1 {
+      margin-bottom: 5vh;
+      font-size: 45px;
+    }
+    .results {
+      flex-direction: column;
+      .time {
+        width: unset;
+        margin-top: 2vh;
+        padding: 2rem;
+      }
+    }
+    .btn {
+      margin-top: 5vh;
     }
   }
 }

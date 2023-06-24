@@ -29,14 +29,24 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 520px) {
   .container {
-    height: 20rem;
-    width: 15rem;
+    height: 16rem;
+    width: 11rem;
 
     & img {
-      width: 10rem;
-      margin-top: 1.25rem;
+      width: 11rem;
+    }
+
+    .name {
+      padding: 0;
+      margin: 0;
+      font-size: $fontSizeSm;
+      height: unset;
+    }
+
+    .text {
+      margin: 0.5rem 0;
     }
   }
 }
