@@ -7,6 +7,7 @@ import { QuizCarousel } from '../../components/QuizCarousel/QuizCarousel';
 import constants from '../../constants/common.json';
 
 import styles from './PlayPage.module.scss';
+import { PlaySound } from '../../components/PlaySound/PlaySound';
 
 export const PlayPage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ export const PlayPage = () => {
   const category = encodedQuizzes
     ? JSON.parse(decodeURIComponent(encodedQuizzes))
     : [];
+
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
   const { quizzes } = useAppSelector((state) => state.quizzReducer);
 
@@ -44,6 +47,10 @@ export const PlayPage = () => {
         <Button onClick={() => navigate('/')} type='exit'>
           ❌
         </Button>
+        <Button type='exit' onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? '🔊' : '🔈'}
+        </Button>
+        <PlaySound isPlaying={isPlaying} />
       </footer>
     </div>
   );
