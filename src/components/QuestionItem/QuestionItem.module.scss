@@ -5,7 +5,7 @@
   background-color: $extraDark;
   border: $extraPink solid 3px;
   border-radius: 30px;
-  height: 300px;
+  height: 18.75rem;
 
   .inner {
     padding: 10px 40px;
@@ -27,7 +27,7 @@
         .checkmark {
           color: $extraDark;
           position: absolute;
-          left: 9px;
+          left: 7px;
         }
       }
 
@@ -44,6 +44,40 @@
 
         &:checked {
           background-color: $mainYellow;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    .inner {
+      .question {
+        font-size: $fontSizeSm;
+      }
+      .questions {
+        margin-bottom: 0;
+        .label {
+          font-size: $fontSizeSm;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 350px) {
+  .container {
+    height: 12.5rem;
+    .inner {
+      padding: 0;
+      .question {
+        font-size: $fontSizeSm;
+        margin-bottom: 0.1rem;
+      }
+      .questions {
+        margin-bottom: 0;
+        .label {
+          font-size: 0.9rem;
         }
       }
     }

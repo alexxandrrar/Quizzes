@@ -17,8 +17,13 @@
   }
 
   & footer {
-    margin-top: 60px;
+    display: flex;
+    margin-top: 3.75rem;
     float: left;
-    padding: 0 40px;
+    padding: 0 2.5rem;
+
+    .btn {
+      margin-right: 1.5rem;
+    }
   }
 }

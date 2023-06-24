@@ -1,12 +1,18 @@
 .carousel-container {
-  width: 800px;
+  width: 50rem;
   margin: auto;
   .disabled-button {
-    margin-top: 30px;
+    margin-top: 1.875rem;
 
     &:disabled {
       cursor: not-allowed;
       background-image: none;
     }
+  }
+}
+
+@media (max-width: 820px) {
+  .carousel-container {
+    width: 100vw;
   }
 }

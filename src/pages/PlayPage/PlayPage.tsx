@@ -44,9 +44,11 @@ export const PlayPage = () => {
         ></QuizCarousel>
       </div>
       <footer>
-        <Button onClick={() => navigate('/')} type='exit'>
-          ❌
-        </Button>
+        <div className={styles.btn}>
+          <Button onClick={() => navigate('/')} type='exit'>
+            ❌
+          </Button>
+        </div>
         <Button type='exit' onClick={() => setIsPlaying(!isPlaying)}>
           {isPlaying ? '🔊' : '🔈'}
         </Button>
