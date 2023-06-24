@@ -45,11 +45,21 @@ export const PlayPage = () => {
       </div>
       <footer>
         <div className={styles.btn}>
-          <Button onClick={() => navigate('/')} type='exit'>
+          <Button
+            tabIndex={0}
+            ariaLabel={'go back to the home page'}
+            onClick={() => navigate('/')}
+            type='exit'
+          >
             ❌
           </Button>
         </div>
-        <Button type='exit' onClick={() => setIsPlaying(!isPlaying)}>
+        <Button
+          tabIndex={0}
+          ariaLabel={'pause or play music'}
+          type='exit'
+          onClick={() => setIsPlaying(!isPlaying)}
+        >
           {isPlaying ? '🔊' : '🔈'}
         </Button>
         <PlaySound isPlaying={isPlaying} />

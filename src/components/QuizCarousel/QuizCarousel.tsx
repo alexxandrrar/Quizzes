@@ -63,6 +63,8 @@ export const QuizCarousel: FC<IQuizCarousel> = ({
           <div key={index}>
             <h3>{`${index + 1}/${quizzes.length}`}</h3>
             <QuestionItem
+              tabIndex={0}
+              ariaLabel={quiz.question}
               selectedAnswer={selectedAnswer}
               setSelectedAnswer={setSelectedAnswer}
               setDisabledButton={setDisabledButton}
@@ -72,6 +74,8 @@ export const QuizCarousel: FC<IQuizCarousel> = ({
         ))}
       </Slider>
       <Button
+        tabIndex={0}
+        ariaLabel={'go to the next question'}
         className={'disabled-button'}
         disabled={disabledButton}
         type='gradient'

@@ -36,7 +36,12 @@ export const HomePage = () => {
       <header className={styles.header}>
         <h1 className={styles.logo}>{constants.QUIZZES}</h1>
         <div className={styles.buttonContainer}>
-          <Button type='gradient' onClick={handleRandomButtonClick}>
+          <Button
+            ariaLabel={'get random quiz'}
+            tabIndex={0}
+            type='gradient'
+            onClick={handleRandomButtonClick}
+          >
             I'm lucky
           </Button>
         </div>

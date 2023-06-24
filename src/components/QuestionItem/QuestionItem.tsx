@@ -8,6 +8,8 @@ interface IQuestionItem {
   selectedAnswer: string;
   setSelectedAnswer: (value: string) => void;
   setDisabledButton: (value: boolean) => void;
+  ariaLabel?: string;
+  tabIndex?: number;
 }
 
 export const QuestionItem: FC<IQuestionItem> = ({
@@ -15,6 +17,8 @@ export const QuestionItem: FC<IQuestionItem> = ({
   selectedAnswer,
   setSelectedAnswer,
   setDisabledButton,
+  ariaLabel,
+  tabIndex,
 }): JSX.Element => {
   const handleAnswerSelection = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -30,7 +34,7 @@ export const QuestionItem: FC<IQuestionItem> = ({
 
   return (
     <div className={styles.container} key={quiz.category}>
-      <div className={styles.inner}>
+      <div className={styles.inner} aria-label={ariaLabel} tabIndex={tabIndex}>
         <p className={styles.question}>{quiz.question}</p>
         <div className={styles.questions}>
           {shuffledAnswers.map((answer, index) => (
@@ -43,6 +47,7 @@ export const QuestionItem: FC<IQuestionItem> = ({
                   value={answer}
                   checked={selectedAnswer === answer}
                   onChange={handleAnswerSelection}
+                  aria-label={answer}
                 ></input>
                 <span className={styles.checkmark}>✓</span>
                 {answer}

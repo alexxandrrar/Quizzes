@@ -8,3 +8,9 @@ body {
   background-color: $mainDark;
   color: $mainWhite;
 }
+
+*:focus {
+  outline: none;
+  tabindex: 0;
+  border: 2px solid $mainPink !important;
+}

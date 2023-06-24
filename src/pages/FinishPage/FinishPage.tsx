@@ -34,6 +34,8 @@ export const FinishPage = () => {
         )}
       </div>
       <Button
+        tabIndex={0}
+        ariaLabel={'go back to the main page'}
         className={styles.btn}
         type='simple'
         onClick={() => navigate('/')}

@@ -24,7 +24,12 @@ export const QuizItem: FC<IQuizItemProps> = ({
       />
       <h2 className={styles.name}>{name}</h2>
       <p className={styles.text}>{`Number of questions: ${questions}`}</p>
-      <Button type='simple' onClick={onClick}>
+      <Button
+        tabIndex={0}
+        ariaLabel='play quiz'
+        type='simple'
+        onClick={onClick}
+      >
         Play
       </Button>
     </div>
