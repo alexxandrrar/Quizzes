@@ -1,9 +1,11 @@
 @import '../../styles/variables.module.scss';
+@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@500;600&display=swap');
 
 .container {
   background-image: url('https://img.freepik.com/premium-vector/colorful-question-mark-seamless-pattern-with-black-background_197792-4948.jpg');
   height: 100vh;
   .logo {
+    font-family: 'Palanquin Dark', sans-serif;
     margin: 0 0 60px;
     padding: 0;
     letter-spacing: 2px;
