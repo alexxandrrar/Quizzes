@@ -37,6 +37,7 @@
 
     & img {
       width: 11rem;
+      margin-top: 1rem;
     }
 
     .name {
@@ -47,8 +48,9 @@
     }
 
     .text {
+      font-size: 0.8rem;
       margin: 0;
-      padding: 0 0 0.4rem;
+      margin: 1vh;
     }
   }
 }
