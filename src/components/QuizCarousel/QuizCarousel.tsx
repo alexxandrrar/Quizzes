@@ -81,7 +81,7 @@ export const QuizCarousel: FC<IQuizCarousel> = ({
         type='gradient'
         onClick={onClickButtonHandler}
       >
-        {selectedAnswersArray.length !== quizzes.length - 1 ? '🢂' : 'Finish'}
+        {selectedAnswersArray.length !== quizzes.length - 1 ? '→' : 'Finish'}
       </Button>
     </div>
   );
